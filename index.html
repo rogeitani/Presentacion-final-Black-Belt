@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto DMAIC LSS - Rogelio Jeitani</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-dmaic-d { background-color: #2D3748; } 
+        .bg-dmaic-m { background-color: #2F855A; } 
+        .bg-dmaic-a { background-color: #C53030; } 
+        .bg-dmaic-i { background-color: #2B6CB0; } 
+        
+        .text-dmaic-d { color: #2D3748; }
+        .text-dmaic-m { color: #2F855A; }
+        .text-dmaic-a { color: #C53030; }
+        .text-dmaic-i { color: #2B6CB0; }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #2B6CB0;
+            position: absolute;
+            left: -8px;
+            top: 24px;
+        }
+        
+        .clickable-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .clickable-card:hover {
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+            border-color: #FCA5A5;
+        }
+        /* Ajustes Single-View */
+        section, header, footer {
+            min-height: 100vh;
+            position: relative;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .slide-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+
+
+    <header class="pt-32 pb-24 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-900 text-white border-b-8 border-blue-500 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="max-w-[90%] mx-auto px-6 text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+                Reducción del Lead Time y Variabilidad en la Gestión de Reservas
+            </h1>
+            <p class="text-xl text-gray-300 mb-10 max-w-3xl mx-auto font-light">
+                Hacer la gestión de reservas de hotel escalables a nivel comercial.
+            </p>
+            <div class="inline-flex flex-col md:flex-row bg-white/10 rounded-xl px-8 py-5 backdrop-blur-md border border-white/20 gap-x-8 gap-y-2">
+                <p class="text-lg"><strong>Autor:</strong> Rogelio Jeitani (Black Belt)</p>
+                <div class="hidden md:block w-px bg-white/30"></div>
+                <p class="text-lg"><strong>Organización:</strong> SOADOS</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="definir" class="py-24 bg-white">
+        <div class="max-w-[90%] mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+            <div class="flex items-center mb-2" data-aos="fade-right">
+                <div class="w-16 h-16 rounded-2xl bg-dmaic-d text-white flex items-center justify-center text-3xl font-black mr-4 shadow-xl transform rotate-3">D</div>
+                <div>
+                    <h2 class="text-4xl font-extrabold text-dmaic-d tracking-tight">DEFINIR</h2>
+                    <p class="text-gray-500 font-medium mt-1 text-sm">Planteamiento del Problema</p>
+                </div>
+            </div>
+
+            <div class="items-start mb-2">
+                <div data-aos="fade-up">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-900">El Problema de Negocio</h3>
+                    <p class="text-gray-600 mb-2 text-sm md:text-base leading-snug">
+                        El proceso actual de reservas hoteleras es lento e inestable. Esto satura al equipo e impide captar grandes clientes corporativos (B2B), ya que atenderlos exigiría contratar más personal.
+                    </p>
+                    <p class="text-gray-600 mb-2 text-sm md:text-base leading-snug">
+                        Esto se agrava debido a que el software principal (Systur) posee limitaciones de campos que truncan la información, forzando a los operadores a utilizar medios de refuerzo adicionales como correos donde las solicitudes fluctúan sin un flujo estandarizado.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-7">
+                        <div class="bg-orange-50 p-3 rounded-xl border-l-4 border-orange-500 shadow-sm">
+                            <h4 class="font-bold text-orange-800 mb-1 flex items-center text-sm md:text-base">
+                                <svg class="w-7 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                Restricción Fundamental
+                            </h4>
+                            <p class="text-orange-700 text-xs md:text-sm leading-tight">Se estableció la estricta limitante de <strong>no alterar la modalidad de trabajo (1 Consultor de Viajes asignado a 1 Consultor de Hoteles)</strong>, ya que interfiere directamente con los sistemas de comisiones.</p>
+                        </div>
+
+                        <div class="bg-slate-50 p-3 rounded-xl border-l-4 border-dmaic-d shadow-sm flex items-start">
+                            <div class="mr-3 mt-1 opacity-70">
+                                <svg class="w-6 h-6 text-dmaic-d" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 mb-1 text-sm md:text-base">Voz del Cliente (VOC)</h4>
+                                <p class="text-slate-600 text-xs md:text-sm leading-tight">El cliente exige inmediatez. Tiempos de respuesta prolongados resultan en pérdida de la venta o fomentan "bypasses" con terceros, lo que afecta el margen de ganancia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Métricas y SIPOC -->
+    <section id="definir-metricas" class="py-4 bg-white">
+        <div class="max-w-[95%] mx-auto px-4 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+                <div class="flex items-center mb-2" data-aos="fade-right">
+                    <div class="w-16 h-16 rounded-2xl bg-dmaic-d text-white flex items-center justify-center text-3xl font-black mr-4 shadow-xl transform rotate-3">D</div>
+                    <div>
+                        <h2 class="text-4xl font-extrabold text-dmaic-d tracking-tight">DEFINIR</h2>
+                        <p class="text-gray-500 font-medium mt-1 text-sm">Métricas Críticas (CTQs) y SIPOC</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 items-stretch mt-2" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Mapa SIPOC -->
+                    <div class="bg-gray-50 p-4 rounded-3xl shadow-inner border border-gray-200 flex flex-col justify-center items-center lg:col-span-1">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 uppercase tracking-wider text-center">Proceso Actual</h3>
+                        <img src="proceso-actual-SOADOS.png" alt="SIPOC SOADOS" class="w-full h-auto max-h-[50vh] object-contain rounded-xl shadow bg-white" onerror="this.src='https://placehold.co/400x600/f3f4f6/a1a1aa?text=proceso-actual-SOADOS.png'">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:col-span-2">
+                        <!-- Valor de Partida -->
+                        <div class="bg-white p-6 rounded-3xl shadow-xl border-t-8 border-red-500 flex flex-col justify-center relative overflow-hidden group">
+                            <div class="absolute -right-10 -top-10 w-40 h-40 bg-red-50 rounded-full group-hover:scale-[2.5] transition-transform duration-700 ease-out z-0"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-xl md:text-2xl font-black text-gray-800 mb-4 uppercase tracking-widest border-b-2 border-red-100 pb-2">Valor de Partida</h3>
+                                <div class="mb-6">
+                                    <p class="text-xs md:text-sm font-bold text-red-500 uppercase tracking-widest mb-1">Mediana Lead Time Total</p>
+                                    <p class="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter">1.011 <span class="text-xl text-gray-400 font-bold tracking-normal">min</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs md:text-sm font-bold text-red-500 uppercase tracking-widest mb-1">Dispersión (IQR) T4</p>
+                                    <p class="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter">847 <span class="text-xl text-gray-400 font-bold tracking-normal">min</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Valor Objetivo -->
+                        <div class="bg-white p-6 rounded-3xl shadow-xl border-t-8 border-green-500 flex flex-col justify-center relative overflow-hidden group">
+                            <div class="absolute -right-10 -top-10 w-40 h-40 bg-green-50 rounded-full group-hover:scale-[2.5] transition-transform duration-700 ease-out z-0"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-xl md:text-2xl font-black text-gray-800 mb-4 uppercase tracking-widest border-b-2 border-green-100 pb-2">Valor Objetivo</h3>
+                                <div class="mb-6">
+                                    <p class="text-xs md:text-sm font-bold text-green-600 uppercase tracking-widest mb-1">Lead Time Total</p>
+                                    <p class="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter">&lt; 120 <span class="text-xl text-gray-400 font-bold tracking-normal">min</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs md:text-sm font-bold text-green-600 uppercase tracking-widest mb-1">Dispersión (IQR) T4</p>
+                                    <p class="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter">&lt; 60 <span class="text-xl text-gray-400 font-bold tracking-normal">min</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Project Charter -->
+    <section id="definir-2" class="bg-white py-12 overflow-y-auto">
+        <div class="w-full max-w-[95%] mx-auto px-4 flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 rounded-2xl bg-dmaic-d text-white flex items-center justify-center text-3xl font-black mr-4 shadow-md">D</div>
+                    <h2 class="text-4xl font-extrabold text-dmaic-d tracking-tight">PROJECT CHARTER</h2>
+                </div>
+            <!-- Project Charter -->
+            <div data-aos="fade-up" class="mt-2 w-full">
+                <h3 class="text-3xl font-bold mb-4 text-center text-gray-900">PROJECT CHARTER</h3>
+                <div class="bg-gray-100 rounded-3xl p-4 flex justify-center shadow-inner border border-gray-200 w-full">
+                    <img src="project_charter.png" alt="Project Charter Completo" class="w-full h-auto rounded shadow bg-white object-contain" onerror="this.src='https://placehold.co/850x1100/f3f4f6/a1a1aa?text=Insertar+Imagen:+project_charter.png'">
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="medir" class="bg-slate-50 border-t border-gray-200">
+        <div class="max-w-[90%] mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+                <div class="flex items-center mb-10">
+                    <div class="w-16 h-16 rounded-2xl bg-dmaic-m text-white flex items-center justify-center text-3xl font-black mr-4 shadow-md">M</div>
+                    <div>
+                        <h2 class="text-4xl font-extrabold text-dmaic-m tracking-tight">MEDIR</h2>
+                        <p class="text-gray-500 font-medium">Recolección y Fiabilidad</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-aos="fade-up">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-dmaic-m mb-2 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                Extracción Python
+                            </h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Se extrajeron registros históricos del servidor y correos de Google Workspace mediante el uso de códigos Python. Se aplicó una restricción cronológica estricta (T1 ≤ T2 ≤ T3 ≤ T4) para asegurar un análisis limpio, consolidando una muestra validada de 874 registros de Lead Time Total.
+                            </p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-dmaic-m mb-2 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Fiabilidad
+                            </h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Se ejecutaron chequeos manuales de consistencia con el equipo comercial, validando muestras aleatorias (30 expedientes por CH) comprobando que el cuerpo del correo coincidiera exactamente con los tiempos extraídos por Python.
+                            </p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-dmaic-m mb-2 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                                No-Normalidad
+                            </h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                La prueba de Anderson-Darling confirmó asimetría severa (p < 0,005). Esto obligó al uso de <strong>Medianas e IQR</strong> en lugar de la Media, porque los datos extremos inflan el resultado y dan una imagen falsa de la operación.
+                            </p>
+                        </div>
+            </div> <!-- Cierre slide-content -->
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Preguntas de Diagnóstico 1 -->
+    <section id="medir-2" class="bg-slate-50">
+        <div class="max-w-[95%] mx-auto px-4 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+                <div class="text-center mb-6" data-aos="fade-up">
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-2">Descubrimientos de la Fase Medir (Planteamiento de Preguntas) - Parte 1</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-t-blue-500 flex flex-col h-full" data-aos="fade-up">
+                        <h4 class="font-bold text-gray-900 mb-3 text-lg leading-tight">¿En qué etapa se concentra la mayor variabilidad y tiempo?</h4>
+                        <p class="text-gray-600 text-sm flex-grow mb-4"><strong>Segmentación Pareto:</strong> El sub-tiempo T4 (espera de respuesta/confirmación del hotel) representa el 55,9% de la variabilidad acumulada de todo el ciclo.</p>
+                        <div class="mt-auto bg-gray-100 w-full aspect-square rounded border border-gray-200 flex items-center justify-center text-xs text-gray-400 p-2 overflow-hidden">
+                            <img src="grafica_pareto_t4.png" alt="Gráfica Pareto" class="object-contain w-full h-full opacity-70" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_pareto_t4.png'">
+                        </div>
+                    </div>
+
+                    <!-- Confirmadas -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-green-500 flex flex-col h-full" data-aos="fade-up" data-aos-delay="50">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-gray-900 text-lg leading-tight pr-2">¿El tipo de hotel genera diferencias en la velocidad?</h4>
+                            <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shrink-0">Confirmada</span>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow mb-4"><strong>Sí (p=0,000):</strong> Cadenas responden rápido (mediana 53 min). Posadas e independientes provocan estancamientos severos (178,5 a 223 min).</p>
+                        <div class="mt-auto bg-gray-100 w-full aspect-square rounded border border-gray-200 flex items-center justify-center text-xs text-gray-400 p-2 overflow-hidden">
+                            <img src="grafica_tipo_hotel.png" alt="Tipo de Hotel" class="object-contain w-full h-full opacity-70" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_tipo_hotel.png'">
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-green-500 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-gray-900 text-lg leading-tight pr-2">¿La cercanía del Check-in modifica el orden en la cola de solicitudes?</h4>
+                            <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shrink-0">Confirmada</span>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow mb-4"><strong>Sí (p=0,000):</strong> Violación regla FIFO. Se priorizan reservas urgentes &lt;48h (39 min), dejando engavetadas las de largo plazo (mediana 299 min).</p>
+                        <div class="mt-auto bg-gray-100 w-full aspect-square rounded border border-gray-200 flex items-center justify-center text-xs text-gray-400 p-2 overflow-hidden">
+                            <img src="grafica_checkin.png" alt="Check-in" class="object-contain w-full h-full opacity-70" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_checkin.png'">
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-green-500 flex flex-col h-full" data-aos="fade-up" data-aos-delay="150">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-gray-900 text-lg leading-tight pr-2">¿Ingresar solicitudes fuera de horario penaliza el tiempo?</h4>
+                            <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shrink-0">Confirmada</span>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow mb-4"><strong>Sí (p=0,000):</strong> On-Time mediana 57 min. Off-Time (cierre administrativo del proveedor) eleva la mediana de espera a 1.052 min.</p>
+                        <div class="mt-auto bg-gray-100 w-full aspect-square rounded border border-gray-200 flex items-center justify-center text-xs text-gray-400 p-2 overflow-hidden">
+                            <img src="grafica_horario_medir.png" alt="Horario" class="object-contain w-full h-full opacity-70" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_horario_medir.png'">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Preguntas de Diagnóstico 2 -->
+    <section id="medir-3" class="bg-slate-50">
+        <div class="max-w-[95%] mx-auto px-4 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+                <div class="text-center mb-6" data-aos="fade-up">
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-2">Descubrimientos de la Fase Medir (Planteamiento de Preguntas) - Parte 2</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-green-500 flex flex-col h-full" data-aos="fade-up">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-gray-900 text-lg leading-tight pr-2">¿El volumen de correos incrementa el retraso?</h4>
+                            <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shrink-0">Confirmada</span>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow mb-4"><strong>Sí (p=0,000):</strong> Mediana de 6 correos/gestión. Cada correo adicional suma +117,8 min de retraso (determinado por la pendiente de la ecuación de regresión).</p>
+                        <div class="mt-auto bg-gray-100 w-full aspect-square rounded border border-gray-200 flex items-center justify-center text-xs text-gray-400 p-2 overflow-hidden">
+                            <img src="grafica_volumen_correos.png" alt="Volumen Correos" class="object-contain w-full h-full opacity-70" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_volumen_correos.png'">
+                        </div>
+                    </div>
+
+                    <!-- Descartadas -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-red-400 flex flex-col h-full" data-aos="fade-up" data-aos-delay="50">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-gray-900 text-lg leading-tight pr-2">¿La carga administrativa (T2) causa el retraso en T4?</h4>
+                            <span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shrink-0">Descartada</span>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow mb-4">Regresión en Minitab arrojó R²=0,67%. La lentitud inicial al digitar (T2) no impacta estadísticamente en el tiempo final de confirmación (T4).</p>
+                        <div class="mt-auto bg-gray-100 w-full aspect-square rounded border border-gray-200 flex items-center justify-center text-xs text-gray-400 p-2 overflow-hidden">
+                            <img src="grafica_carga_t2.png" alt="Carga T2" class="object-contain w-full h-full opacity-70" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_carga_t2.png'">
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-red-400 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-gray-900 text-lg leading-tight pr-2">¿Diferencias de rendimiento (efecto operador)?</h4>
+                            <span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shrink-0">Descartada</span>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow mb-4">Carece de peso. Existe variabilidad atada a la cantidad de asignaciones, pero como restricción de la Fase Definir, el modelo 1 CH por 1 CV es intocable por afectar las comisiones.</p>
+                        <div class="mt-auto bg-gray-100 w-full aspect-square rounded border border-gray-200 flex items-center justify-center text-xs text-gray-400 p-2 overflow-hidden">
+                            <img src="grafica_operador.png" alt="Efecto Operador" class="object-contain w-full h-full opacity-70" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_operador.png'">
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-red-400 flex flex-col h-full" data-aos="fade-up" data-aos-delay="150">
+                         <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-gray-900 text-lg leading-tight pr-2">¿En qué medida los factores externos dictan el desempeño?</h4>
+                            <span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shrink-0">Descartada</span>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow mb-4">Aunque la infraestructura eléctrica afecta localmente, <strong>se descartan por tener bajo peso metodológico</strong> de gobernabilidad ante las causas estructurales internas.</p>
+                        <div class="mt-auto bg-gray-100 w-full aspect-square rounded border border-gray-200 flex items-center justify-center text-xs text-gray-400 p-2 overflow-hidden">
+                            <img src="grafica_factores_externos.png" alt="Factores Externos" class="object-contain w-full h-full opacity-70" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_factores_externos.png'">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Preguntas de Diagnóstico 3 -->
+    <section id="medir-4" class="bg-slate-50">
+        <div class="max-w-[90%] mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-2">Descubrimientos de la Fase Medir (Diagnósticos Conceptuales)</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col" data-aos="fade-up">
+                        <h4 class="font-bold text-gray-900 mb-3 text-lg leading-tight">¿Cuál es la definición operativa de la métrica principal (Y)?</h4>
+                        <p class="text-gray-600 text-sm flex-grow"><strong>Respuesta:</strong> Y es el Lead Time Total medido en minutos continuos transcurridos desde T0 (creación de la solicitud) hasta T4 (confirmación final enviada).</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col" data-aos="fade-up" data-aos-delay="50">
+                        <h4 class="font-bold text-gray-900 mb-3 text-lg leading-tight">¿Los datos del tiempo de proceso siguen una distribución Normal?</h4>
+                        <p class="text-gray-600 text-sm flex-grow"><strong>Respuesta:</strong> No. La prueba de Anderson-Darling arrojó p-valor < 0,005, confirmando asimetría positiva severa. Se definió caracterizar la línea base usando Mediana e IQR.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                        <h4 class="font-bold text-gray-900 mb-3 text-lg leading-tight">¿Es riesgoso tener 3 softwares separados?</h4>
+                        <p class="text-gray-600 text-sm flex-grow"><strong>Respuesta:</strong> Sí, aumentan drásticamente el riesgo de transcripción humana al obligar a cruzar datos manualmente de un sistema a otro.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col" data-aos="fade-up" data-aos-delay="150">
+                        <h4 class="font-bold text-gray-900 mb-3 text-lg leading-tight">¿Por qué mantienen proveedores ineficientes?</h4>
+                        <p class="text-gray-600 text-sm flex-grow"><strong>Respuesta:</strong> Por exigencia de los clientes corporativos que prefieren esos hoteles aun cuando se les sugieren otros con mejores tiempos de respuesta.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                        <h4 class="font-bold text-gray-900 mb-3 text-lg leading-tight">¿Cómo se compara la empresa con los mayoristas?</h4>
+                        <p class="text-gray-600 text-sm flex-grow">A nivel competitivo, los mayoristas obtienen respuestas en tiempo real porque prepagan, mientras que SOADOS cuenta con crédito y no asegura disponibilidad al hotel.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col" data-aos="fade-up" data-aos-delay="250">
+                        <h4 class="font-bold text-gray-900 mb-3 text-lg leading-tight">¿La expectativa del cliente (VOC) concuerda con el proceso actual?</h4>
+                        <p class="text-gray-600 text-sm flex-grow"><strong>Respuesta:</strong> No. El cliente espera su confirmación en un lapso de 30 minutos a 2 horas, una meta inalcanzable de manera constante con el nivel de fragmentación actual.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="analizar" class="py-4 bg-white relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-64 h-64 bg-red-50 rounded-full blur-3xl opacity-50 -z-10 -mr-20 -mt-20"></div>
+        <div class="max-w-[90%] mx-auto px-6 relative z-10 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+            <div class="flex items-center mb-4" data-aos="fade-right">
+                <div class="w-16 h-16 rounded-2xl bg-dmaic-a text-white flex items-center justify-center text-3xl font-black mr-4 shadow-xl transform rotate-3">A</div>
+                <div>
+                    <h2 class="text-4xl font-extrabold text-dmaic-a tracking-tight">ANALIZAR</h2>
+                    <p class="text-gray-500 font-medium mt-1 text-sm">Demostración Estadística de las Causas Raíz</p>
+                </div>
+            </div> 
+            <!-- Ishikawa -->
+            <div class="mb-2" data-aos="fade-up">
+                <div class="flex justify-end items-end mb-1">
+                    <h3 class="text-lg font-bold text-gray-900 text-right">Estructuración de Causas Potenciales (6M)</h3>
+                </div>
+                <div class="bg-gray-50 p-2 md:p-3 rounded-3xl shadow-inner border border-gray-200 flex justify-center">
+                    <img src="Diagrama de Ishikawa.png" alt="Diagrama de Ishikawa" class="max-w-full h-auto max-h-[70vh] rounded-xl hover:scale-[1.02] transition-transform duration-500 shadow-md bg-white object-contain" onerror="this.src='https://placehold.co/1000x500/f3f4f6/a1a1aa?text=Insertar+Imagen:+Diagrama+de+Ishikawa.png'">
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Validación Minitab -->
+    <section id="analizar-2" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-64 h-64 bg-red-50 rounded-full blur-3xl opacity-50 -z-10 -mr-20 -mt-20"></div>
+        <div class="max-w-[90%] mx-auto px-6 relative z-10 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+
+            <!-- Profundización Estadística con Acordeones -->
+            <div class="mb-2 flex flex-col md:flex-row items-center justify-between" data-aos="fade-up">
+                <h3 class="text-xl font-bold text-gray-900 shrink-0">Validación de Hipótesis en Minitab</h3>
+                <p class="text-xs text-gray-600 max-w-2xl text-right leading-snug ml-4">
+                    Para evitar suposiciones, se aislaron las variables y se sometieron a pruebas rigurosas confirmando <strong>4 causas raíz (p = 0,000)</strong> que dominan la ineficiencia.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+                <!-- X1 -->
+                <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 relative group flex flex-col" data-aos="fade-up">
+                    <div class="absolute top-0 right-0 bg-red-100 text-red-800 font-black px-2 py-1 rounded-bl-lg rounded-tr-xl text-[10px]">p = 0,000</div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-1 flex items-center">
+                        <span class="w-6 h-6 bg-red-50 text-red-600 rounded-full flex items-center justify-center font-bold text-xs mr-2 shrink-0">X1</span>
+                        <span class="leading-tight">Infraestructura y Tipo de Hotel</span>
+                    </h4>
+                    <p class="text-gray-600 mb-2 text-xs leading-snug">
+                        Evaluación estadística de la brecha tecnológica. Cadenas estructuradas = rápida respuesta.
+                    </p>
+                    <div class="bg-red-50 p-2 rounded-lg border border-red-100">
+                        <p class="text-red-900 font-medium text-xs leading-tight">Los hoteles independientes y posadas disparan el Lead Time a <strong>178 y 223 min</strong>.</p>
+                    </div>
+                    <div id="graph-x1" class="mt-2 bg-gray-100 rounded-lg p-1 border border-gray-200 w-full h-48 md:h-64 flex items-center justify-center overflow-hidden">
+                        <img src="grafica_boxplot_tipo_hotel.png" alt="Gráfica Boxplot Tipo de Hotel" class="w-full h-full object-contain rounded" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_boxplot_tipo_hotel.png'">
+                    </div>
+                </div>
+
+                <!-- X2 -->
+                <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 relative group flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 bg-red-100 text-red-800 font-black px-2 py-1 rounded-bl-lg rounded-tr-xl text-[10px]">p = 0,000</div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-1 flex items-center">
+                        <span class="w-6 h-6 bg-red-50 text-red-600 rounded-full flex items-center justify-center font-bold text-xs mr-2 shrink-0">X2</span>
+                        <span class="leading-tight">Urgencia y Violación FIFO</span>
+                    </h4>
+                    <p class="text-gray-600 mb-2 text-xs leading-snug">
+                        Contingencias resueltas en 39 min.
+                    </p>
+                    <div class="bg-red-50 p-2 rounded-lg border border-red-100">
+                        <p class="text-red-900 font-medium text-xs leading-tight">Largo plazo inactivo: <strong>299 minutos</strong>.</p>
+                    </div>
+                    <div id="graph-x2" class="mt-2 bg-gray-100 rounded-lg p-1 border border-gray-200 w-full h-48 md:h-64 flex items-center justify-center overflow-hidden">
+                        <img src="grafica_urgencia.png" alt="Gráfica Urgencia" class="w-full h-full object-contain rounded" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_urgencia.png'">
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Validación Minitab (Continuación) -->
+    <section id="analizar-3" class="py-4 bg-white relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-64 h-64 bg-red-50 rounded-full blur-3xl opacity-50 -z-10 -mr-20 -mt-20"></div>
+        <div class="max-w-[90%] mx-auto px-6 relative z-10 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+                <div class="mb-2 flex flex-col md:flex-row items-center justify-between" data-aos="fade-up">
+                    <h3 class="text-xl font-bold text-gray-900 shrink-0">Validación de Hipótesis en Minitab (Cont.)</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+
+                <!-- X3 -->
+                <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 relative group flex flex-col" data-aos="fade-up">
+                    <div class="absolute top-0 right-0 bg-red-100 text-red-800 font-black px-2 py-1 rounded-bl-lg rounded-tr-xl text-[10px]">p = 0,000</div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-1 flex items-center">
+                        <span class="w-6 h-6 bg-red-50 text-red-600 rounded-full flex items-center justify-center font-bold text-xs mr-2 shrink-0">X3</span>
+                        <span class="leading-tight">Horario de la Solicitud (Off-Time)</span>
+                    </h4>
+                    <p class="text-gray-600 mb-2 text-xs leading-snug">
+                        Impacto del cierre administrativo de los proveedores. Flujo eficiente en horario de oficina.
+                    </p>
+                    <div class="bg-red-50 p-2 rounded-lg border border-red-100">
+                        <p class="text-red-900 font-medium text-xs leading-tight">Fuera de horario (Off-Time), la espera se eleva a <strong>1.052 minutos</strong> de tiempo muerto.</p>
+                    </div>
+                    <div id="graph-x3" class="mt-2 bg-gray-100 rounded-lg p-1 border border-gray-200 w-full h-48 md:h-64 flex items-center justify-center overflow-hidden">
+                        <img src="grafica_horario.png" alt="Gráfica Horario" class="w-full h-full object-contain rounded" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_horario.png'">
+                    </div>
+                </div>
+
+                <!-- X4 -->
+                <div class="bg-white p-4 rounded-xl shadow-md border border-gray-100 relative group flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 bg-red-100 text-red-800 font-black px-2 py-1 rounded-bl-lg rounded-tr-xl text-[10px]">p = 0,000</div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-1 flex items-center">
+                        <span class="w-6 h-6 bg-red-50 text-red-600 rounded-full flex items-center justify-center font-bold text-xs mr-2 shrink-0">X4</span>
+                        <span class="leading-tight">Retrabajo en Comunicación</span>
+                    </h4>
+                    <p class="text-gray-600 mb-2 text-xs leading-snug">
+                        Se exigen hasta 6 a 25 correos aclaratorios por reserva.
+                    </p>
+                    <div class="bg-red-50 p-2 rounded-lg border border-red-100">
+                        <p class="text-red-900 font-medium text-xs leading-tight"><strong>Cada correo suma 117,8 minutos</strong> netos de latencia.</p>
+                    </div>
+                    <div id="graph-x4" class="mt-2 bg-gray-100 rounded-lg p-1 border border-gray-200 w-full h-48 md:h-64 flex items-center justify-center overflow-hidden">
+                        <img src="grafica_regresion_correos.png" alt="Gráfica Regresión Correos" class="w-full h-full object-contain rounded" onerror="this.src='https://placehold.co/400x400/f3f4f6/a1a1aa?text=grafica_regresion_correos.png'">
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mejorar" class="py-24 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+            <div class="flex flex-col items-center mb-6" data-aos="fade-down">
+                <div class="flex items-center mb-4">
+                    <div class="w-16 h-16 rounded-2xl bg-dmaic-i text-white flex items-center justify-center text-4xl font-black mr-4 shadow-xl transform -rotate-3">I</div>
+                    <h2 class="text-5xl font-extrabold text-dmaic-i tracking-tight">MEJORAR</h2>
+                </div>
+                <p class="text-lg text-center text-gray-600 max-w-4xl mt-2">
+                    <strong>Trazabilidad Directa:</strong> Cada mejora desarrollada responde exclusivamente a anular una causa raíz (X) validada estadísticamente, eliminando la improvisación operativa.
+                </p>
+            </div>
+
+            <!-- Trazabilidad X -> Solución Ampliada -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 items-start">
+                
+                <!-- Match 1 -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col" data-aos="fade-up">
+                    <div class="bg-gray-100 px-6 py-3 border-b border-gray-200 flex justify-between items-center">
+                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest">Ataca Causa X4</span>
+                        <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded">Retrabajo / Correos</span>
+                    </div>
+                    <div class="p-6 flex-grow relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-dmaic-i"></div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Frontend Wrapper (Poka-Yoke Digital de Entrada)</h4>
+                        <p class="text-gray-600 text-sm mb-4">Dado que Systur posee limitaciones físicas de campos que truncan los textos enviados y omiten especificaciones críticas, se diseñó un entorno HTML/Python sobrepuesto (Poka-Yoke). Exige al Consultor llenar campos obligatorios estandarizados. Al guardar, el script comprime las etiquetas JSON y las inyecta de forma ultracorta en Systur para evitar el truncamiento, descomprimiéndolas visualmente solo en la pantalla del Consultor de Hoteles.</p>
+                        <div class="bg-blue-50 text-blue-900 px-4 py-3 rounded-xl text-xs font-semibold flex items-center">
+                            <svg class="w-5 h-5 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Impacto: Frena el defecto en origen y erradica los 117,8 minutos adicionales que causaba cada correo aclaratorio.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 2 -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-gray-100 px-6 py-3 border-b border-gray-200 flex justify-between items-center">
+                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest">Ataca Causa X2</span>
+                        <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded">Engavetamiento / FIFO</span>
+                    </div>
+                    <div class="p-6 flex-grow relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-dmaic-i"></div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Motor PULL y Kanban de Control Visual</h4>
+                        <p class="text-gray-600 text-sm mb-4">Se eliminó por completo la matriz manual de Excel donde los operadores seleccionaban tareas a su conveniencia. Se implementó un Kanban Web con motor de colas que oculta la lista total, entregando el trabajo bajo flujo de una sola pieza (WIP=1). Integra un algoritmo de envejecimiento (Aging) que eleva algorítmicamente la prioridad de una reserva si pasa mucho tiempo esperando, impidiendo la inanición por dar prioridad absoluta a las urgencias.</p>
+                        <div class="bg-blue-50 text-blue-900 px-4 py-3 rounded-xl text-xs font-semibold flex items-center">
+                            <svg class="w-5 h-5 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Impacto: Destruye la selección "a dedo", garantizando que la dispersión IQR del T4 se estabilice por debajo de 60 min.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mejorar-b" class="py-24 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper flex flex-col justify-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- Match 3 -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col" data-aos="fade-up">
+                    <div class="bg-gray-100 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest">Ataca Causa X3</span>
+                        <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded">Cierre Off-Time</span>
+                    </div>
+                    <div class="p-8 flex-grow relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-dmaic-i"></div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Inteligencia SLA y Repique Condicional</h4>
+                        <p class="text-gray-600 mb-6">El envío es inmediato para no frenar la operación interna. Si es "Off-Time", el SLA pausa el conteo hasta las 08:00 AM del día hábil. Si a las 2 horas hábiles el hotel no responde, dispara un repique automático. <strong>Excepción (Bypass):</strong> Si la reserva es urgente (<24h), ignora el Off-Time y fuerza de inmediato el contacto proactivo manual (botón de llamada/WhatsApp directo). (Nota: Se descartó firmar acuerdos SLA formales ya que los hoteles independientes se negaron a comprometerse contractualmente).</p>
+                        <div class="bg-blue-50 text-blue-900 px-4 py-3 rounded-xl text-sm font-semibold flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Impacto: Erradica el olvido administrativo y la inactividad nocturna del proveedor que elevaba la espera a 1.052 minutos.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 4 -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-gray-100 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest">Ataca Causa X1</span>
+                        <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded">Posadas Lentas</span>
+                    </div>
+                    <div class="p-8 flex-grow relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-dmaic-i"></div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Smart Button & Master Data</h4>
+                        <p class="text-gray-600 mb-6">Se levantó un Master Data (directorio) de contactos celulares de posaderos. Se envía un enlace (Smart Button) al móvil del hotel, donde este ingresa la tarifa y el localizador de manera asíncrona y sencilla. Al confirmar, los datos se inyectan directamente en el Kanban del Consultor, pasándolo a estado confirmado y emitiendo en paralelo un recibo PDF automático al hotel como respaldo oficial.</p>
+                        <div class="bg-blue-50 text-blue-900 px-4 py-3 rounded-xl text-sm font-semibold flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Impacto: Cero transcripción humana. Se elimina la latencia de las posadas, equiparándolas a la velocidad de respuesta de las cadenas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mejorar-c" class="py-24 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper flex flex-col justify-center">
+            <div class="grid grid-cols-1 lg:grid-cols-1 gap-8 items-stretch">
+                
+                <!-- Match 5 & 6 (Descartadas / Menores) -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col md:col-span-2 min-h-[400px]" data-aos="fade-up">
+                    <div class="bg-gray-100 px-8 py-5 border-b border-gray-200">
+                        <span class="text-sm font-black text-gray-500 uppercase tracking-widest">Alternativas Descartadas tras Brainstorming</span>
+                    </div>
+                    <div class="p-10 flex-grow grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-items-center">
+                        <div class="bg-red-50/50 border-2 border-red-200 rounded-2xl p-8 max-w-sm w-full h-80 flex flex-col items-center justify-center text-center relative shadow-sm">
+                            <div class="text-red-500 text-[10rem] font-black absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-20 select-none pointer-events-none">X</div>
+                            <h5 class="font-bold text-gray-900 text-lg mb-4 z-10">Integración API/PMS con Posadas</h5>
+                            <p class="text-sm text-gray-600 z-10">Descartada. Inviable por falta de infraestructura tecnológica en las posadas independientes. Terminaría quemando el presupuesto IT sin adopción real del proveedor.</p>
+                        </div>
+                        <div class="bg-red-50/50 border-2 border-red-200 rounded-2xl p-8 max-w-sm w-full h-80 flex flex-col items-center justify-center text-center relative shadow-sm">
+                            <div class="text-red-500 text-[10rem] font-black absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-20 select-none pointer-events-none">X</div>
+                            <h5 class="font-bold text-gray-900 text-lg mb-4 z-10">Bot de Inteligencia Artificial (IA)</h5>
+                            <p class="text-sm text-gray-600 z-10">Descartado. Leer correos libres de posadas generaría "alucinaciones" por la jerga informal y mala ortografía, requiriendo revisión humana constante y aportando un riesgo alto.</p>
+                        </div>
+                        <div class="bg-red-50/50 border-2 border-red-200 rounded-2xl p-8 max-w-sm w-full h-80 flex flex-col items-center justify-center text-center relative shadow-sm">
+                            <div class="text-red-500 text-[10rem] font-black absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-20 select-none pointer-events-none">X</div>
+                            <h5 class="font-bold text-gray-900 text-lg mb-4 z-10">Checklist Físico Impreso</h5>
+                            <p class="text-sm text-gray-600 z-10">Descartado. Genera Muda de sobreprocesamiento, movimiento y gasto de papel. Desacelera radicalmente el proceso y no frena el error humano al transcribir.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Matriz Impacto Esfuerzo -->
+    <section id="mejorar-2" class="py-4 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper flex flex-col justify-center">
+            <!-- Matriz Impacto Esfuerzo (Movida antes del AMFE) -->
+            <div data-aos="fade-up">
+                <div class="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-2">
+                    <h3 class="text-2xl font-extrabold text-gray-900">Priorización de Soluciones</h3>
+                    <p class="text-xs text-gray-500 max-w-sm text-center sm:text-right">Recompensa Baja descartadas. Alto impacto componen el núcleo.</p>
+                </div>
+                <div class="bg-white p-2 md:p-4 rounded-xl shadow border border-gray-200 w-full mx-auto">
+                    <img src="MATRIZ IMPACTO ESFUERZO.png" alt="Matriz de Esfuerzo e Impacto" class="w-full h-auto max-h-[60vh] rounded-xl object-contain mx-auto" onerror="this.src='https://placehold.co/800x600/f3f4f6/a1a1aa?text=Insertar+Imagen:+MATRIZ+IMPACTO+ESFUERZO.png'">
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: AMFE -->
+    <section id="mejorar-3" class="py-24 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+            <!-- AMFE de Implementación -->
+            <!-- AMFE de Implementación -->
+            <div class="mb-6" data-aos="fade-up">
+                <div class="text-center mb-4">
+                    <h3 class="text-3xl font-extrabold text-gray-900 mb-2">Análisis Modal de Fallos y Efectos (AMFE)</h3>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Evaluación de riesgos de implementación para asegurar que las soluciones no generen problemas colaterales, aplicando Poka-Yokes preventivos.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 w-full overflow-hidden">
+                    <table class="w-full text-left border-collapse table-fixed">
+                        <thead>
+                            <tr class="bg-gray-800 text-white text-[10px] uppercase tracking-wider">
+                                <th class="p-3 w-1/5">Mejora</th>
+                                <th class="p-3 w-1/4">Modo de Fallo Potencial</th>
+                                <th class="p-3 w-16 text-center">NPR Inicial</th>
+                                <th class="p-3 w-1/3">Acción Preventiva (Antídoto)</th>
+                                <th class="p-3 w-16 text-center">NPR Final</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-xs divide-y divide-gray-100 break-words whitespace-normal">
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-gray-800 align-top">Frontend Wrapper</td>
+                                <td class="p-3 text-gray-600 align-top">El sistema trunca los datos al inyectarlos en Systur. Información incomprensible.</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-red-100 text-red-800 font-black px-2 py-1 rounded">160</span>
+                                </td>
+                                <td class="p-3 text-gray-600 align-top"><strong>Serialización Comprimida:</strong> Envío de etiquetas JSON ultracortas en lugar de oraciones completas.</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-green-100 text-green-800 font-black px-2 py-1 rounded">8</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-gray-800 align-top">Motor PULL (Kanban)</td>
+                                <td class="p-3 text-gray-600 align-top">Operador se bloquea ante reserva compleja y evade el sistema volviendo al Excel.</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-orange-100 text-orange-800 font-black px-2 py-1 rounded">140</span>
+                                </td>
+                                <td class="p-3 text-gray-600 align-top"><strong>Botón Parqueo Auditado:</strong> Permite estacionar temporalmente 1 tarjeta con justificación visible para supervisor.</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-green-100 text-green-800 font-black px-2 py-1 rounded">28</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-gray-800 align-top">Mini-Extranet (Sin conexión)</td>
+                                <td class="p-3 text-gray-600 align-top">Posada sufre corte eléctrico/internet. Solicitud atascada en T3 sin respuesta web.</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-red-100 text-red-800 font-black px-2 py-1 rounded">240</span>
+                                </td>
+                                <td class="p-3 text-gray-600 align-top"><strong>Bypass de Urgencia:</strong> Alerta roja tras 2h inactivos fuerza gestión manual expedita por WhatsApp B2B.</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-green-100 text-green-800 font-black px-2 py-1 rounded">16</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-gray-800 align-top">Mini-Extranet (Error tipeo)</td>
+                                <td class="p-3 text-gray-600 align-top">Recepcionista ingresa tarifa neta con error de tipeo (pérdida de margen).</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-red-100 text-red-800 font-black px-2 py-1 rounded">200</span>
+                                </td>
+                                <td class="p-3 text-gray-600 align-top"><strong>Poka-Yoke Tarifario:</strong> Validación algorítmica oculta vs tarifa base; etiqueta naranja de alerta si difiere.</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-green-100 text-green-800 font-black px-2 py-1 rounded">16</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-gray-800 align-top">Master Data</td>
+                                <td class="p-3 text-gray-600 align-top">Contactos desactualizados (Data Decay) por alta rotación en las posadas.</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-yellow-100 text-yellow-800 font-black px-2 py-1 rounded">120</span>
+                                </td>
+                                <td class="p-3 text-gray-600 align-top"><strong>Estándar 5S Digital / Auditoría:</strong> CH obligado a marcar flag si detecta rebote de contacto; chequeo semanal.</td>
+                                <td class="p-3 text-center align-middle">
+                                    <span class="inline-block bg-green-100 text-green-800 font-black px-2 py-1 rounded">24</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Roadmap -->
+    <section id="mejorar-4" class="py-24 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper">
+            <!-- Plan de Implementación -->
+            <div class="mb-24" data-aos="fade-up">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-extrabold text-gray-900 mb-3">Plan de Implementación (Roadmap)</h3>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Estrategia de despliegue en 4 fases, priorizando un entorno piloto controlado antes del lanzamiento definitivo (Hypercare).</p>
+                </div>
+                
+                <div class="relative w-full mx-auto mt-10">
+                    <!-- Linea horizontal -->
+                    <div class="absolute top-6 left-0 right-0 h-1 bg-blue-200 hidden md:block z-0"></div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
+                        <div class="relative flex flex-col items-center">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 border-4 border-white shadow-md mb-4 z-10 hidden md:block"></div>
+                            <div class="bg-white p-5 rounded-2xl shadow-md border border-gray-200 w-full h-full">
+                                <span class="text-xs font-black text-blue-600 uppercase tracking-widest mb-2 block text-center">Fase 1: Semanas 1 y 2</span>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Preparación y Desarrollo IT</h4>
+                                <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                                    <li>Desarrollo de la interfaz Wrapper y Motor PULL (Kanban).</li>
+                                    <li>Programación de la Mini-Extranet (Smart Button) y tokenización.</li>
+                                    <li>Levantamiento de la Base <em>Master Data</em> de contactos.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="relative flex flex-col items-center">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 border-4 border-white shadow-md mb-4 z-10 hidden md:block"></div>
+                            <div class="bg-white p-5 rounded-2xl shadow-md border border-gray-200 w-full h-full">
+                                <span class="text-xs font-black text-blue-600 uppercase tracking-widest mb-2 block text-center">Fase 2: Semana 3</span>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Prueba Piloto Controlada</h4>
+                                <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                                    <li><strong>Piloto Interno:</strong> Pruebas controladas del Kanban WIP=1.</li>
+                                    <li><strong>Piloto Externo:</strong> Uso del Smart Button con 5 posadas de extrema confianza.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="relative flex flex-col items-center">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 border-4 border-white shadow-md mb-4 z-10 hidden md:block"></div>
+                            <div class="bg-white p-5 rounded-2xl shadow-md border border-gray-200 w-full h-full">
+                                <span class="text-xs font-black text-blue-600 uppercase tracking-widest mb-2 block text-center">Fase 3: Semana 4</span>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Gestión del Cambio</h4>
+                                <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                                    <li>Sesión de capacitación general: Abandono del Excel y uso del Parqueo Auditado.</li>
+                                    <li>Comunicación corporativa masiva a la base de hoteles explicando el botón web de confirmación.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="relative flex flex-col items-center">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 border-4 border-white shadow-md mb-4 z-10 hidden md:block"></div>
+                            <div class="bg-white p-5 rounded-2xl shadow-md border border-gray-200 w-full h-full">
+                                <span class="text-xs font-black text-blue-600 uppercase tracking-widest mb-2 block text-center">Fase 4: Semana 5</span>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Despliegue Oficial (Go-Live)</h4>
+                                <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                                    <li>Transición y apagado formal de los accesos a matrices anteriores (Excel).</li>
+                                    <li>Soporte de arranque en tiempo real <strong>(Hypercare)</strong> durante los primeros 3 días.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Diapositiva: Mapa -->
+    <section id="mejorar-5" class="py-24 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+            <div class="slide-content scale-wrapper flex flex-col justify-center">
+            <!-- Nuevo Proceso (Movido aquí) -->
+            <div data-aos="fade-up">
+                <h3 class="text-3xl font-extrabold mb-4 text-center text-gray-900">Mapa del Nuevo Proceso Optimizado</h3>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto text-center mb-4">Según las ideas de mejora implementadas y blindadas en el AMFE, se estima que el nuevo mapa de flujo de Proceso quede reestructurado de esta forma, demostrando el flujo continuo alcanzado:</p>
+                <div class="bg-white p-4 md:p-6 rounded-3xl shadow-lg border border-gray-200 flex justify-center overflow-x-auto">
+                    <img src="PROCESO-TRAS-MEJORAS.png" alt="Nuevo Proceso" class="w-full min-w-[800px] h-auto max-h-[50vh] rounded-xl object-contain" onerror="this.src='https://placehold.co/1200x600/f3f4f6/a1a1aa?text=Insertar+Imagen:+PROCESO-TRAS-MEJORAS.png'">
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cierre" class="py-20 bg-slate-900 text-white relative overflow-hidden h-screen flex flex-col justify-center">
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10" data-aos="zoom-in">
+            <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-4">Cierre de Proyecto</h2>
+            <p class="text-xl text-gray-300 font-light mb-8 max-w-3xl mx-auto">
+                La implementación de estas soluciones sistémicas garantiza que SOADOS pueda escalar sus operaciones corporativas de forma limpia, absorbiendo un mayor volumen de negocio sin elevar la nómina operativa. La transición del "esfuerzo humano desordenado" al "flujo continuo controlado por datos" es el legado de este ciclo DMAIC.
+            </p>
+            <p class="text-blue-400 font-semibold tracking-wider uppercase text-sm mb-16">Fin de la Presentación</p>
+        </div>
+        
+        <div class="absolute bottom-8 left-0 w-full text-gray-500 text-center">
+            <p class="mb-2 font-semibold">&copy; 2026 - Proyecto Lean Six Sigma (DMAIC) - Rogelio Jeitani</p>
+            <p class="text-xs tracking-widest uppercase">UPC</p>
+        </div>
+    </section>
+
+    <!-- UI de Navegación del Slider -->
+    <div id="slider-ui" class="fixed bottom-6 right-6 z-[100] flex items-center bg-white/95 backdrop-blur-md rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-gray-200 px-3 py-2 gap-5 transition-all">
+        <button id="btnPrev" class="w-12 h-12 flex items-center justify-center bg-slate-800 text-white rounded-full hover:bg-slate-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed shadow-inner">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="slideCount" class="font-extrabold text-slate-800 min-w-[4rem] text-center text-lg tracking-widest"></span>
+        <button id="btnNext" class="w-12 h-12 flex items-center justify-center bg-blue-600 text-white rounded-full hover:bg-blue-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed shadow-inner">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Lógica de Diapositivas
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = Array.from(document.querySelectorAll('header, section, footer'));
+            let currentIdx = 0;
+
+            sections.forEach(sec => {
+                sec.style.display = 'none';
+                sec.classList.add('min-h-screen', 'flex', 'flex-col', 'justify-center');
+            });
+
+            function updateSlide() {
+                sections.forEach((sec, i) => {
+                    sec.style.display = (i === currentIdx) ? 'flex' : 'none';
+                });
+                document.getElementById('slideCount').textContent = `${currentIdx + 1} / ${sections.length}`;
+                document.getElementById('btnPrev').disabled = currentIdx === 0;
+                document.getElementById('btnNext').disabled = currentIdx === sections.length - 1;
+                window.scrollTo(0, 0);
+                setTimeout(() => {
+                    if (typeof autoScaleSlides === 'function') autoScaleSlides();
+                    AOS.refreshHard();
+                }, 50); // Refresca animaciones en la nueva slide
+            }
+
+            // Inyectar título de fase en cada lámina automáticamente
+            sections.forEach(sec => {
+                const phase = sec.id.split('-')[0];
+                const titles = {
+                    'definir': { text: 'DEFINIR', color: 'text-dmaic-d' },
+                    'medir': { text: 'MEDIR', color: 'text-dmaic-m' },
+                    'analizar': { text: 'ANALIZAR', color: 'text-dmaic-a' },
+                    'mejorar': { text: 'MEJORAR', color: 'text-dmaic-i' }
+                };
+                if(titles[phase] && titles[phase].text) {
+                    sec.insertAdjacentHTML('afterbegin', `<div class="absolute inset-0 flex items-center justify-center text-[12vw] md:text-[18vw] font-black tracking-tighter uppercase opacity-[0.03] ${titles[phase].color} z-0 pointer-events-none select-none overflow-hidden">${titles[phase].text}</div>`);
+                }
+            });
+
+            document.getElementById('btnPrev').addEventListener('click', () => { if(currentIdx > 0) { currentIdx--; updateSlide(); }});
+            document.getElementById('btnNext').addEventListener('click', () => { if(currentIdx < sections.length - 1) { currentIdx++; updateSlide(); }});
+            updateSlide();
+        });
+
+        AOS.init({
+            once: true,
+            offset: 120,
+            duration: 800,
+        });
+
+        // Event listener de teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                document.getElementById('btnPrev').click();
+            } else if (e.key === 'ArrowRight') {
+                document.getElementById('btnNext').click();
+            }
+        });
+
+        function toggleGraph(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                if (el.classList.contains('hidden')) {
+                    el.classList.remove('hidden');
+                    el.style.opacity = 0;
+                    setTimeout(() => {
+                        el.style.transition = "opacity 0.5s ease";
+                        el.style.opacity = 1;
+                    }, 10);
+                } else {
+                    el.classList.add('hidden');
+                    el.style.opacity = 0;
+                }
+            }
+        }
+
+        const sliderUi = document.getElementById('slider-ui');
+        if (sliderUi) sliderUi.style.opacity = '1';
+    </script>
+</body>
+</html>
